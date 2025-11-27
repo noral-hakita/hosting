@@ -3,40 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HyperETS - Ultimate Minecraft Server Hosting Experience (THE LONG SCROLL)</title>
+    <title>HyperETS - Elite Minecraft Server Hosting</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-
-        /* Enhanced Animations */
+        /* IMPORTANT FIX: Force a dark background and white text regardless of Tailwind */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #1a202c !important; /* Dark Gray background */
+            color: #ffffff !important; /* White text */
+        }
+        
+        /* Keyframe Animations (Retained) */
         @keyframes pulse-custom {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: .7; transform: scale(1.02); }
+            50% { opacity: .7; transform: scale(1.01); }
         }
         .animate-pulse {
             animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
         @keyframes bounce-custom {
-            0%, 100% { transform: translateY(-10%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+            0%, 100% { transform: translateY(-5%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
             50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
         }
         .animate-bounce-subtle {
             animation: bounce-custom 3s infinite;
         }
 
-        /* Button Gap Animation */
         @keyframes gapAnimation {
             0% { letter-spacing: normal; }
-            50% { letter-spacing: 2px; }
+            50% { letter-spacing: 1px; }
             100% { letter-spacing: normal; }
         }
         .animate-gap {
             animation: gapAnimation 2s infinite;
         }
 
-        /* Background Animation */
         @keyframes backgroundShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -48,423 +51,342 @@
             animation: backgroundShift 15s ease infinite;
         }
 
-        /* Subtle Background Texture */
-        .bg-pattern {
-            background-image: repeating-linear-gradient(45deg, rgba(31, 41, 55, 0.05) 0, rgba(31, 41, 55, 0.05) 1px, transparent 1px, transparent 10px);
+        /* Particles/Pixels Background (Themed for Minecraft) */
+        .bg-minecraft-pixels {
+            position: relative;
+            z-index: 1; /* Ensure content is above background */
+            overflow: hidden;
+        }
+        .bg-minecraft-pixels::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Subtle grid/pixel texture (e.g., green moss/dirt block) */
+            background-image: repeating-linear-gradient(
+                0deg, 
+                rgba(6, 95, 70, 0.1) 0, 
+                rgba(6, 95, 70, 0.1) 2px, 
+                transparent 2px, 
+                transparent 20px
+            ),
+            repeating-linear-gradient(
+                90deg, 
+                rgba(6, 95, 70, 0.1) 0, 
+                rgba(6, 95, 70, 0.1) 2px, 
+                transparent 2px, 
+                transparent 20px
+            );
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: -1;
         }
 
-        /* Enhanced Hover Effects */
+        /* General Styling */
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px); /* Less dramatic lift */
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3), 0 5px 5px -5px rgba(0, 0, 0, 0.2);
         }
 
-        /* Glow Effect */
         .glow {
-            box-shadow: 0 0 20px rgba(72, 187, 120, 0.5);
+            box-shadow: 0 0 15px rgba(72, 187, 120, 0.5); /* Less intense glow */
         }
         .glow:hover {
-            box-shadow: 0 0 30px rgba(72, 187, 120, 0.8);
-        }
-
-        /* Custom Gap Class for extreme spacing */
-        .massive-gap {
-            padding-top: 24rem; /* py-96 (384px) */
-            padding-bottom: 24rem; /* py-96 (384px) */
+            box-shadow: 0 0 25px rgba(72, 187, 120, 0.8);
         }
     </style>
 </head>
-<body class="bg-animated text-white">
+<body class="bg-animated text-white bg-minecraft-pixels">
 
     <div class="relative min-h-screen overflow-hidden">
 
-        <header class="px-8 md:px-24 py-5 border-b border-green-700/50">
+        <header class="sticky top-0 z-50 px-8 md:px-24 py-5 border-b border-green-700/50 backdrop-blur-sm bg-gray-900/80">
             <nav class="flex justify-between items-center">
                 <div class="text-4xl font-extrabold text-green-400 tracking-wider glow rounded-lg px-2">HyperETS</div>
-                <div class="space-x-8 text-lg font-medium text-gray-400">
+                <div class="space-x-6 text-lg font-medium text-gray-400 hidden md:flex">
                     <a href="#plans" class="hover:text-green-400 transition hover-lift px-3 py-1 rounded">Plans</a>
                     <a href="#features" class="hover:text-green-400 transition hover-lift px-3 py-1 rounded">Features</a>
                     <a href="#modpacks" class="hover:text-green-400 transition hover-lift px-3 py-1 rounded">Modpacks</a>
                     <a href="#deep-dive" class="hover:text-green-400 transition hover-lift px-3 py-1 rounded">Tech Deep Dive</a>
-                    <a href="#testimonials" class="hover:text-green-400 transition hover-lift px-3 py-1 rounded">Testimonials</a>
+                    <a href="#contact" class="hover:text-green-400 transition hover-lift px-3 py-1 rounded">Contact</a>
                 </div>
             </nav>
         </header>
 
-        <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-24 massive-gap space-y-16 md:space-y-0">
-            <div class="text-center md:text-left space-y-8 max-w-3xl">
-                <h1 class="text-8xl font-black text-green-400 drop-shadow-xl animate-pulse">HyperETS</h1>
+        <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-24 py-24 space-y-12 md:space-y-0">
+            <div class="text-center md:text-left space-y-6 max-w-3xl">
+                <h1 class="text-7xl font-black text-green-400 drop-shadow-xl animate-pulse">HyperETS: Elite Minecraft Hosting</h1>
                 
-                <p class="text-gray-300 text-2xl md:text-3xl leading-snug tracking-wide font-light animate-bounce-subtle">
-                    Launch your first <span class="text-green-400 font-bold">better than ever</span> Minecraft server with HyperETS. We offer the best prices with a <span class="text-green-400 font-bold">full trial</span> and <span class="text-green-400 font-bold">no payment required</span> until the trial ends. Get <span class="text-green-400 font-bold">Modpack support</span> and create your server with <span class="text-green-400 font-bold">zero knowledge</span> in under 5 minutes using our powerful AI assistant.
+                <p class="text-gray-300 text-xl md:text-2xl leading-snug tracking-wide font-light animate-bounce-subtle">
+                    Launch your lag-free Minecraft server with **HyperETS**. Enjoy a <span class="text-green-400 font-bold">full trial with no payment required</span>. Get **One-Click Modpack support** and set up your server in minutes using our powerful AI assistant.
                 </p>
 
-                <p class="text-gray-400 text-xl leading-relaxed">
-                    Ever dreamed of creating your own Minecraft universe but got lost in confusing server setups? We've been there too! That's why we built HyperETS - to transform the frustrating process of server hosting into an absolute joyride. With our <span class="text-green-400">one-click deployment</span> and <span class="text-green-400">AI-powered setup wizard</span>, you'll go from zero to hero in minutes, not hours!
+                <p class="text-gray-400 text-lg leading-relaxed hidden sm:block">
+                    We eliminate the frustration of server setup. Our <span class="text-green-400">one-click deployment</span> and <span class="text-green-400">AI-powered setup wizard</span> transform hosting from a headache into an absolute joyride. Get low-latency connections optimized for the **Asian region**.
                 </p>
                 
-                <div class="mt-10 flex justify-center md:justify-start space-x-6">
-                    <a href="/register" class="px-10 py-5 bg-green-500 rounded-lg font-bold text-xl hover:bg-green-600 transition-all shadow-green-500/50 shadow-2xl uppercase tracking-wider animate-gap hover-lift">
-                        Start Free Trial
+                <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                    <a href="/register" class="px-8 py-4 bg-green-500 rounded-lg font-bold text-lg hover:bg-green-600 transition-all shadow-green-500/50 shadow-xl uppercase tracking-wider animate-gap hover-lift">
+                        Start 7-Day Free Trial
                     </a>
-                    <a href="#plans" class="px-10 py-5 bg-gray-700 rounded-lg font-bold text-xl hover:bg-gray-600 transition-all shadow-lg uppercase tracking-wider hover-lift">
-                        View Pricing
+                    <a href="#plans" class="px-8 py-4 bg-gray-700 rounded-lg font-bold text-lg hover:bg-gray-600 transition-all shadow-lg uppercase tracking-wider hover-lift">
+                        View Plans
                     </a>
                 </div>
             </div>
             
-            <div class="mt-10 md:mt-0 p-6 border-4 border-green-500/80 bg-gray-900 shadow-2xl shadow-green-500/30 rounded-xl hover-lift">
-                <img src="https://via.placeholder.com/300x240?text=Minecraft+Server+Rack" alt="HyperETS Server Rack" width="300" height="240" class="block object-cover rounded-lg"/>
-                <p class="text-center text-md text-gray-400 mt-3 font-medium">Dedicated Asian Low-Latency Hardware</p>
+            <div class="mt-8 md:mt-0 p-4 border-2 border-green-500/80 bg-gray-900 shadow-2xl shadow-green-500/30 rounded-xl hover-lift">
+                <img src="https://via.placeholder.com/350x280?text=Minecraft+Server+Hardware" alt="HyperETS Server Hardware Visualization" width="350" height="280" class="block object-cover rounded-lg"/>
+                <p class="text-center text-sm text-gray-400 mt-2 font-medium">Asia-Optimized, High-Frequency CPU Hardware</p>
             </div>
         </section>
-        <hr class="border-green-700/50 mx-8 md:mx-24 my-20">
 
-        <section id="features" class="px-8 md:px-24 massive-gap">
-            <h2 class="text-5xl font-extrabold text-green-400 mb-16 text-center tracking-tight">HyperETS Advantage 🛠️</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        <hr class="border-green-700/50 mx-8 md:mx-24 my-16">
+
+        <section id="features" class="px-8 md:px-24 py-16">
+            <h2 class="text-4xl font-extrabold text-green-400 mb-12 text-center tracking-tight">Core HyperETS Advantages 🛠️</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🛡️ DDoS Protection</h3><p class="text-gray-300">Enterprise-grade network security shields your server from common and advanced volumetric attacks, ensuring <span class="text-green-400 font-semibold">99.9% uptime</span> and lag-free gameplay, even under stress.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">💻 Custom Control Panel</h3><p class="text-gray-300">Intuitive, feature-rich panel built specifically for Minecraft. Manage files, backups, and consoles with ease. Built on the secure and scalable <span class="text-green-400 font-semibold">Pterodactyl platform</span>.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">📞 24/7 Customer Support</h3><p class="text-gray-300">Our expert team is available around the clock via live chat and tickets to resolve hardware, network, or configuration issues <span class="text-green-400 font-semibold">quickly and efficiently</span>.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">⬆️ Easy Tier Upgrade</h3><p class="text-gray-300">Scale your server <span class="text-green-400 font-semibold">instantly</span> as your player base grows. Upgrade RAM/CPU/Storage mid-month with seamless migration and no downtime or data loss.</p></div>
-
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🤖 AI Support Assistant</h3><p class="text-gray-300">Our HyperAI bot can guide you through installation, troubleshoot common errors, and optimize server settings—all in real-time, <span class="text-green-400 font-semibold">24/7</span>.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">⚡ Stable Low Latency</h3><p class="text-gray-300">Optimized network routing for the Asia region (Pakistan, India, SEA), delivering pings <span class="text-green-400 font-semibold">under 50ms</span> for a truly responsive and lag-free multiplayer experience.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">⚙️ Mod/Plugin Support</h3><p class="text-gray-300">One-click installers for platforms like <span class="text-green-400 font-semibold">Spigot, PaperMC, Forge, and Fabric</span>. Full support for custom JAR files and easy configuration of essential plugins.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🔄 Automated Backups</h3><p class="text-gray-300">Protect your world with daily automatic backups stored off-site. Easily restore your server to any previous state with a single click from the control panel.</p></div>
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">⚡ Low Latency (Asia)</h3>
+                    <p class="text-gray-300 text-sm">Pings **under 50ms** for Pakistan, India, and SEA, thanks to Singapore/Mumbai datacenters.</p>
+                </div>
                 
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🎮 Multi-Version Support</h3><p class="text-gray-300">Run any Minecraft version from the classic Alpha to the latest snapshots. Switch between versions with a single click - no complicated setup required!</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🚀 Instant Setup</h3><p class="text-gray-300">Your server is ready to play in under 60 seconds after ordering. No waiting, no delays - just pure Minecraft fun right when you want it!</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🌐 Global CDN</h3><p class="text-gray-300">Our content delivery network ensures fast downloads for resource packs and mods for players anywhere in the world, reducing join times significantly.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">📊 Performance Analytics</h3><p class="text-gray-300">Monitor your server's health with real-time graphs showing CPU, memory, and network usage. Identify performance bottlenecks before they affect gameplay.</p></div>
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">🛡️ Premium DDoS Protection</h3>
+                    <p class="text-gray-300 text-sm">Enterprise-grade network security ensures **99.9% uptime** against volumetric attacks.</p>
+                </div>
+                
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">💻 Custom Pterodactyl Panel</h3>
+                    <p class="text-gray-300 text-sm">Intuitive control panel with easy file management, console access, and one-click installs.</p>
+                </div>
+                
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">🤖 AI Server Assistant</h3>
+                    <p class="text-gray-300 text-sm">Real-time AI support to guide installation, troubleshoot errors, and optimize settings.</p>
+                </div>
 
-            </div>
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">⚙️ Mod/Plugin Support</h3>
+                    <p class="text-gray-300 text-sm">One-click installers for **PaperMC, Forge, Fabric**, and popular Modpacks like ATM and RLCraft.</p>
+                </div>
+                
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">🔄 Automated Backups</h3>
+                    <p class="text-gray-300 text-sm">Protect your world with daily automatic backups stored securely off-site for easy restoration.</p>
+                </div>
+                
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">💾 NVMe SSD Storage</h3>
+                    <p class="text-gray-300 text-sm">Blazing-fast SSDs ensure quick chunk loading and minimal world save lag, even with large worlds.</p>
+                </div>
 
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-10">
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">💾 NVMe SSD Storage</h3><p class="text-gray-300">All worlds are hosted on blazing-fast <span class="text-green-400 font-semibold">NVMe SSDs</span> for lightning-quick chunk loading and minimal world save lag.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🔥 Latest CPU Architecture</h3><p class="text-gray-300">Utilizing <span class="text-green-400 font-semibold">high-single-core-speed</span> CPUs, perfect for Minecraft's single-threaded demands, ensuring maximum Tick Per Second (TPS).</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🔒 Full SFTP Access</h3><p class="text-gray-300">For advanced users, we offer <span class="text-green-400 font-semibold">full SFTP access</span> to manage your files directly, allowing for quick mod/plugin installation and configuration.</p></div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-2xl bg-pattern hover-lift"><h3 class="text-2xl font-bold text-white mb-3">🌍 Multiple Locations</h3><p class="text-gray-300">Choose between our primary **Singapore** and secondary **Mumbai** datacenters for the best possible latency to your player base.</p></div>
+                <div class="p-6 bg-gray-800 rounded-xl border border-gray-700 hover:border-green-500 transition shadow-lg hover-lift">
+                    <h3 class="text-xl font-bold text-white mb-2">⬆️ Instant Scaling</h3>
+                    <p class="text-gray-300 text-sm">Upgrade RAM/CPU seamlessly mid-month with **no downtime** or data migration hassles.</p>
+                </div>
+                
             </div>
         </section>
-        <hr class="border-green-700/50 mx-8 md:mx-24 my-20">
-        
-        <div class="h-[50vh] flex items-center justify-center">
-             <h2 class="text-4xl font-extrabold text-gray-500/50 italic tracking-widest">--- SCROLL DOWN FOR MORE CONTENT ---</h2>
-        </div>
-        
-        <hr class="border-green-700/50 mx-8 md:mx-24 my-20">
 
-        <section id="modpacks" class="px-8 md:px-24 py-20 bg-gray-900/50 rounded-lg mx-8 md:mx-24">
-            <h3 class="text-4xl font-extrabold text-green-400 mb-6 tracking-tight">Modpack Support Made Simple 📦</h3>
-            <p class="text-gray-300 text-xl leading-relaxed">
-                HyperETS understands that the best Minecraft experiences often come from <span class="text-green-400 font-semibold">Modpacks</span>. We take the headache out of complex installations. Our one-click system lets you deploy hundreds of popular Modpacks from platforms like <span class="text-green-400 font-semibold">CurseForge</span>, <span class="text-green-400 font-semibold">FTB</span>, and <span class="text-green-400 font-semibold">Technic</span> instantly. Whether you're diving into the technical depths of <em>FTB SkyFactory</em> or exploring the magical realms of <em>RLCraft</em>, our high-performance hardware, paired with automated dependency handling, ensures your modded world loads fast and runs smoothly. We handle the heavy lifting so you can focus on playing.
+        <hr class="border-green-700/50 mx-8 md:mx-24 my-16">
+
+        <section id="modpacks" class="px-8 md:px-24 py-16 bg-gray-900/50 rounded-lg mx-8 md:mx-24">
+            <h3 class="text-4xl font-extrabold text-green-400 mb-6 text-center tracking-tight">Modpack Deployment Simplified 📦</h3>
+            <p class="text-gray-300 text-lg text-center max-w-3xl mx-auto mb-10">
+                Forget manual installation. We offer **one-click deployment** for hundreds of popular modpacks from CurseForge and FTB, paired with performance-tuned hardware to ensure your complex modded world runs smoothly.
             </p>
             
-            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="p-6 bg-gray-800/70 rounded-lg border border-green-700/30">
-                    <h4 class="text-xl font-bold text-green-400 mb-3">Popular Modpacks Available</h4>
-                    <ul class="text-gray-300 space-y-2">
-                        <li class="flex items-center">✅ All the Mods 9</li>
-                        <li class="flex items-center">✅ RLCraft</li>
-                        <li class="flex items-center">✅ SkyFactory 4</li>
-                        <li class="flex items-center">✅ Better Minecraft</li>
-                        <li class="flex items-center">✅ Valhelsia 5</li>
-                        <li class="flex items-center">✅ StoneBlock 3</li>
-                        <li class="flex items-center">✅ Enigmatica 9</li>
-                        <li class="flex items-center">✅ Vault Hunters</li>
-                    </ul>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="p-4 bg-gray-800/70 rounded-lg border border-green-700/30 hover-lift">
+                    <h4 class="text-xl font-bold text-green-400 mb-1">FTB & CurseForge</h4>
+                    <p class="text-gray-400 text-sm">Instant access to the largest libraries.</p>
                 </div>
-                
-                <div class="p-6 bg-gray-800/70 rounded-lg border border-green-700/30">
-                    <h4 class="text-xl font-bold text-green-400 mb-3">Custom Modpacks Welcome!</h4>
-                    <p class="text-gray-300">Have your own custom modpack? No problem! Upload your modpack files directly through our control panel or provide a link to your modpack repository. Our system will handle the installation automatically. We support all major loaders: **Forge, Fabric, Quilt, and Rift**.</p>
-                    <p class="text-sm text-gray-400 mt-4"><em>Pro-Tip: Use our AI assistant to check for mod conflicts before deployment!</em></p>
+                <div class="p-4 bg-gray-800/70 rounded-lg border border-green-700/30 hover-lift">
+                    <h4 class="text-xl font-bold text-green-400 mb-1">Custom JAR/Mod Support</h4>
+                    <p class="text-gray-400 text-sm">Upload your custom files easily via SFTP.</p>
                 </div>
-                
-                <div class="p-6 bg-gray-800/70 rounded-lg border border-green-700/30">
-                    <h4 class="text-xl font-bold text-green-400 mb-3">Modpack Performance Guarantee</h4>
-                    <p class="text-gray-300">Running large modpacks requires serious resources. Our **Standard Pro** and **Elite Power** plans are specifically tuned with higher clock speed CPUs and guaranteed RAM allocation to eliminate common TPS lag associated with heavy modpacks.</p>
-                    <div class="mt-4 text-green-400 font-semibold">
-                        <p>Minimum Recommended: 8GB RAM (Standard Pro)</p>
-                    </div>
+                <div class="p-4 bg-gray-800/70 rounded-lg border border-green-700/30 hover-lift">
+                    <h4 class="text-xl font-bold text-green-400 mb-1">Dedicated Resources</h4>
+                    <p class="text-gray-400 text-sm">Our 8GB+ plans are modpack-performance certified.</p>
                 </div>
             </div>
         </section>
 
-        <hr class="border-green-700/50 mx-8 md:mx-24 my-20">
+        <hr class="border-green-700/50 mx-8 md:mx-24 my-16">
 
-        <section id="testimonials" class="px-8 md:px-24 massive-gap">
-            <h2 class="text-5xl font-extrabold text-green-400 mb-16 text-center tracking-tight">What Our Players Say (Hear It Again! The Scroll Must Be Long!) 🗣️</h2>
+        <section id="plans" class="px-8 md:px-24 py-16">
+            <h2 class="text-4xl font-extrabold text-green-400 mb-12 text-center tracking-tight">Flexible Server Plans 💰</h2>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">A</div><div class="ml-4"><h4 class="font-bold text-white">AlexTheBuilder</h4><div class="flex text-yellow-400">★★★★★</div></div></div><p class="text-gray-300 italic">"I've tried 3 different hosting services before HyperETS, and none came close. The setup was literally 2 minutes, and my modded server runs buttery smooth with 15 players online!"</p></div>
-                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">M</div><div class="ml-4"><h4 class="font-bold text-white">MinecraftMaya</h4><div class="flex text-yellow-400">★★★★★</div></div></div><p class="text-gray-300 italic">"As someone who knows nothing about servers, the AI assistant was a lifesaver! It walked me through installing my favorite modpack and even helped optimize the settings. 10/10!"</p></div>
-                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">R</div><div class="ml-4"><h4 class="font-bold text-white">RedstoneWizard</h4><div class="flex text-yellow-400">★★★★★</div></div></div><p class="text-gray-300 italic">"The ping from Pakistan is incredible! My friends and I used to play on European servers with 200ms+, but now we get 30ms. It's like playing a completely different game!"</p></div>
-
-                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">S</div><div class="ml-4"><h4 class="font-bold text-white">SurvivalSam</h4><div class="flex text-yellow-400">★★★★★</div></div></div><p class="text-gray-300 italic">"The automated backups saved my entire world after a disastrous mod configuration! The control panel is super easy to use, even for non-tech folks like me."</p></div>
-                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">P</div><div class="ml-4"><h4 class="font-bold text-white">PvPMaster99</h4><div class="flex text-yellow-400">★★★★★</div></div></div><p class="text-gray-300 italic">"The low latency in Asia is no joke. Running my competitive PVP server on the Elite Power plan has given us the edge. Zero rubber-banding, even during intense fights."</p></div>
-                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift"><div class="flex items-center mb-4"><div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">F</div><div class="ml-4"><h4 class="font-bold text-white">FarmerFred</h4><div class="flex text-yellow-400">★★★★★</div></div></div><p class="text-gray-300 italic">"Moved my massive farm world to HyperETS. Finally, no more lag spikes every time the wheat grows! The dedicated CPU cores make a huge difference in TPS."</p></div>
-            </div>
-        </section>
-        <hr class="border-green-700/50 mx-8 md:mx-24 my-20">
-
-        <section id="plans" class="px-8 md:px-24 py-20">
-            <h2 class="text-5xl font-extrabold text-green-400 mb-16 text-center tracking-tight">Flexible Server Plans 💰</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <div class="p-8 bg-gray-800 rounded-xl border-2 border-green-500/50 flex flex-col items-center space-y-4 shadow-2xl hover:bg-gray-700 transition hover-lift">
-                    <h3 class="text-3xl font-extrabold text-green-400 border-b-2 border-gray-600 pb-2">🚀 Starter Trial</h3>
-                    <p class="text-white text-xl font-mono">2 GB RAM / 1 Core CPU (Shared)</p>
-                    <p class="text-4xl font-bold text-white">$0.00 <span class="text-sm text-gray-400">/ 7 Days Trial</span></p>
-                    <p class="text-green-500 font-semibold uppercase">No Payment Required</p>
+                <div class="p-6 bg-gray-800 rounded-xl border-2 border-green-500/50 flex flex-col items-center space-y-3 shadow-2xl hover:bg-gray-700 transition hover-lift">
+                    <h3 class="text-2xl font-extrabold text-green-400 border-b-2 border-gray-600 pb-2">🚀 Starter Trial</h3>
+                    <p class="text-white text-lg font-mono">2 GB RAM / 1 Shared Core</p>
+                    <p class="text-3xl font-bold text-white">$0.00 <span class="text-sm text-gray-400">/ 7 Days Trial</span></p>
+                    <p class="text-green-500 font-semibold uppercase text-sm">No Payment Required</p>
                     
-                    <ul class="text-gray-300 text-sm space-y-2 pt-4 w-full">
-                        <li class="flex items-center">✅ Full Control Panel Access</li>
-                        <li class="flex items-center">✅ Basic DDoS Protection</li>
-                        <li class="flex items-center">✅ Unlimited Player Slots</li>
-                        <li class="flex items-center">❌ Limited AI Support (After 5 Days)</li>
+                    <ul class="text-gray-300 text-xs space-y-1 pt-3 w-full text-left">
+                        <li>✅ Full Control Panel Access</li>
+                        <li>✅ Unlimited Player Slots</li>
+                        <li>✅ Basic DDoS Protection</li>
                     </ul>
-                    <a href="#" class="mt-8 w-full bg-green-500 hover:bg-green-600 px-4 py-3 rounded-lg font-bold text-lg transition-all text-center uppercase animate-gap">Start Free Trial</a>
+                    <a href="#" class="mt-6 w-full bg-green-500 hover:bg-green-600 px-4 py-3 rounded-lg font-bold text-sm transition-all text-center uppercase animate-gap">Start Free Trial</a>
                 </div>
 
-                <div class="p-8 bg-gray-800 rounded-xl border-2 border-gray-600 flex flex-col items-center space-y-4 shadow-2xl hover:border-green-500 transition hover-lift">
-                    <h3 class="text-3xl font-extrabold text-green-400 border-b-2 border-gray-600 pb-2">🌱 Basic Core</h3>
-                    <p class="text-white text-xl font-mono">4 GB RAM / 2 Dedicated Cores</p>
-                    <p class="text-4xl font-bold text-white">$9.99 <span class="text-sm text-gray-400">/ Month</span></p>
-                    <p class="text-gray-300 font-semibold">Ideal for Friends & Small Servers</p>
+                <div class="p-6 bg-gray-800 rounded-xl border-2 border-gray-600 flex flex-col items-center space-y-3 shadow-2xl hover:border-green-500 transition hover-lift">
+                    <h3 class="text-2xl font-extrabold text-green-400 border-b-2 border-gray-600 pb-2">🌱 Basic Core</h3>
+                    <p class="text-white text-lg font-mono">4 GB RAM / 2 Dedicated Cores</p>
+                    <p class="text-3xl font-bold text-white">$9.99 <span class="text-sm text-gray-400">/ Month</span></p>
+                    <p class="text-gray-300 font-semibold text-sm">Ideal for Friends & Small Servers</p>
 
-                    <ul class="text-gray-300 text-sm space-y-2 pt-4 w-full">
-                        <li class="flex items-center">✅ Full AI & Customer Support</li>
-                        <li class="flex items-center">✅ Standard DDoS Protection</li>
-                        <li class="flex items-center">✅ <span class="text-green-400 font-semibold">Full Plugin Support</span></li>
-                        <li class="flex items-center">✅ Automated Daily Backups</li>
+                    <ul class="text-gray-300 text-xs space-y-1 pt-3 w-full text-left">
+                        <li>✅ Full AI & Customer Support</li>
+                        <li>✅ Full Plugin Support</li>
+                        <li>✅ Automated Daily Backups</li>
                     </ul>
-                    <a href="#" class="mt-8 w-full bg-gray-700 hover:bg-gray-600 px-4 py-3 rounded-lg font-bold text-lg transition-all text-center uppercase">Select Basic Core</a>
+                    <a href="#" class="mt-6 w-full bg-gray-700 hover:bg-gray-600 px-4 py-3 rounded-lg font-bold text-sm transition-all text-center uppercase">Select Basic Core</a>
                 </div>
 
-                <div class="p-8 bg-gray-800 rounded-xl border-4 border-green-500 flex flex-col items-center space-y-4 shadow-2xl shadow-green-500/50 hover:bg-gray-700 transition transform lg:scale-105 hover-lift">
-                    <div class="bg-green-500 text-black px-4 py-1 text-sm rounded-full mb-2 font-bold uppercase">Recommended</div>
-                    <h3 class="text-3xl font-extrabold text-white border-b-2 border-green-500 pb-2">💎 Standard Pro</h3>
-                    <p class="text-green-400 text-xl font-mono">8 GB RAM / 4 Dedicated Cores</p>
-                    <p class="text-4xl font-bold text-white">$18.99 <span class="text-sm text-gray-400">/ Month</span></p>
-                    <p class="text-gray-300 font-semibold">Perfect for <span class="text-green-400 font-semibold">Modpacks</span> & Large Servers</p>
+                <div class="p-6 bg-gray-800 rounded-xl border-4 border-green-500 flex flex-col items-center space-y-3 shadow-2xl shadow-green-500/50 hover:bg-gray-700 transition transform lg:scale-105 hover-lift">
+                    <div class="bg-green-500 text-black px-3 py-1 text-xs rounded-full mb-1 font-bold uppercase">Recommended</div>
+                    <h3 class="text-2xl font-extrabold text-white border-b-2 border-green-500 pb-2">💎 Standard Pro</h3>
+                    <p class="text-green-400 text-lg font-mono">8 GB RAM / 4 Dedicated Cores</p>
+                    <p class="text-3xl font-bold text-white">$18.99 <span class="text-sm text-gray-400">/ Month</span></p>
+                    <p class="text-gray-300 font-semibold text-sm">Perfect for **Modpacks** & Large Servers</p>
 
-                    <ul class="text-gray-300 text-sm space-y-2 pt-4 w-full">
-                        <li class="flex items-center">✅ <span class="text-green-400 font-semibold">Priority 24/7 Support</span></li>
-                        <li class="flex items-center">✅ <span class="text-green-400 font-semibold">Modpack One-Click Installers</span></li>
-                        <li class="flex items-center">✅ Dedicated IP Option (Add-on)</li>
-                        <li class="flex items-center">✅ Advanced Layer 7 DDoS Mitigation</li>
+                    <ul class="text-gray-300 text-xs space-y-1 pt-3 w-full text-left">
+                        <li>✅ Priority 24/7 Support</li>
+                        <li>✅ Modpack One-Click Installers</li>
+                        <li>✅ Advanced Layer 7 DDoS Mitigation</li>
                     </ul>
-                    <a href="#" class="mt-8 w-full bg-green-500 hover:bg-green-600 px-4 py-3 rounded-lg font-bold text-lg transition-all text-center uppercase animate-gap">Select Pro Plan</a>
+                    <a href="#" class="mt-6 w-full bg-green-500 hover:bg-green-600 px-4 py-3 rounded-lg font-bold text-sm transition-all text-center uppercase animate-gap">Select Pro Plan</a>
                 </div>
                 
-                <div class="p-8 bg-gray-800 rounded-xl border-2 border-gray-600 flex flex-col items-center space-y-4 shadow-2xl hover:border-green-500 transition hover-lift">
-                    <h3 class="text-3xl font-extrabold text-green-400 border-b-2 border-gray-600 pb-2">🌟 Elite Power</h3>
-                    <p class="text-white text-xl font-mono">16 GB RAM / 6 Dedicated Cores</p>
-                    <p class="text-4xl font-bold text-white">$34.99 <span class="text-sm text-gray-400">/ Month</span></p>
-                    <p class="text-gray-300 font-semibold">For Public Servers & Heavy Usage</p>
+                <div class="p-6 bg-gray-800 rounded-xl border-4 border-yellow-400 flex flex-col items-center space-y-3 shadow-2xl shadow-yellow-400/50 hover:border-yellow-400 transition hover-lift">
+                    <h3 class="text-2xl font-extrabold text-yellow-400 border-b-2 border-yellow-400 pb-2">🌟 Hyper Plan</h3>
+                    <p class="text-white text-lg font-mono">16 GB RAM / 6 Dedicated Cores</p>
+                    <p class="text-3xl font-bold text-white">$34.99 <span class="text-sm text-gray-400">/ Month</span></p>
+                    <p class="text-gray-300 font-semibold text-sm">For **Public Servers** & Networks</p>
 
-                    <ul class="text-gray-300 text-sm space-y-2 pt-4 w-full">
-                        <li class="flex items-center">✅ <span class="text-green-400 font-semibold">Guaranteed Physical RAM</span></li>
-                        <li class="flex items-center">✅ High-Frequency CPU Cores</li>
-                        <li class="flex items-center">✅ Dedicated IP Included</li>
-                        <li class="flex items-center">✅ Unlimited Storage (Fair Use)</li>
+                    <ul class="text-gray-300 text-xs space-y-1 pt-3 w-full text-left">
+                        <li>✅ Guaranteed Physical RAM</li>
+                        <li>✅ Dedicated IP Included</li>
+                        <li>✅ Unlimited NVMe Storage (Fair Use)</li>
                     </ul>
-                    <a href="#" class="mt-8 w-full bg-gray-700 hover:bg-gray-600 px-4 py-3 rounded-lg font-bold text-lg transition-all text-center uppercase">Select Elite Power</a>
+                    <a href="#" class="mt-6 w-full bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg font-bold text-sm transition-all text-center uppercase text-black">Select Hyper Power</a>
                 </div>
             </div>
 
-            <div class="mt-16 p-12 bg-gray-900 rounded-xl border-4 border-yellow-400 shadow-2xl shadow-yellow-400/50 text-center hover-lift">
-                 <h3 class="text-5xl font-extrabold text-yellow-400 mb-4 tracking-tighter">🌌 Titan Realm <span class="text-2xl text-green-400">(The Ultimate SCROLL Plan)</span></h3>
-                 <p class="text-white text-3xl font-mono mb-6">32 GB RAM / 8 Dedicated Cores (Highest Clock Speed)</p>
-                 <p class="text-6xl font-black text-white">$69.99 <span class="text-xl text-gray-400">/ Month</span></p>
-                 <p class="text-yellow-400 font-semibold text-2xl mt-4">Built for Massive Networks & Uncompromising Modded Servers</p>
-
-                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 text-lg font-medium">
-                    <p class="text-gray-300">⭐ Custom Kernel Optimization</p>
-                    <p class="text-gray-300">⭐ Private VLAN Segmentation</p>
-                    <p class="text-gray-300">⭐ Dedicated Enterprise NVMe</p>
-                    <p class="text-gray-300">⭐ Priority Access to Beta Features</p>
-                 </div>
-                 <a href="#" class="mt-10 inline-block w-1/2 bg-yellow-500 hover:bg-yellow-600 px-8 py-5 rounded-lg font-black text-2xl transition-all text-center uppercase animate-gap text-black">DOMINATE THE REALM</a>
-            </div>
-
-            <div class="mt-20 p-8 bg-gray-900/70 rounded-xl border border-green-700/50 shadow-inner hover-lift">
-                <h3 class="text-3xl font-extrabold text-white mb-4">Every Plan Has Everything You Need (And More) ✅</h3>
-                <p class="text-gray-400 text-lg leading-relaxed">
-                    While RAM and CPU scale across our tiers, we ensure that <span class="text-green-400 font-semibold">core functionality</span> is never restricted. Regardless of whether you choose the Free Trial or the Elite Power plan, you will always receive: <span class="text-green-400 font-semibold">full access</span> to our custom Pterodactyl-based Control Panel, <span class="text-green-400 font-semibold">unlimited player slots</span>, <span class="text-green-400 font-semibold">zero setup fees</span>, <span class="text-green-400 font-semibold">instant deployment</span>, and the ability to run any server type (Java, Bedrock, Bungeecord, etc.). All plans are also hosted on our <span class="text-green-400 font-semibold">low-latency Asian network</span> and are protected by our baseline <span class="text-green-400 font-semibold">DDoS mitigation</span> at no extra cost. We only charge more for hardware, never for essential features.
+            <div class="mt-12 p-6 bg-gray-900/70 rounded-xl border border-green-700/50 shadow-inner hover-lift">
+                <h3 class="text-2xl font-extrabold text-white mb-3">Commitment to Core Features ✅</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    All plans include **full access** to our custom control panel, **unlimited player slots**, **instant deployment**, and baseline **DDoS mitigation**. We only charge more for hardware, never for essential hosting features.
                 </p>
             </div>
         </section>
 
-        <hr class="border-green-700/50 mx-8 md:mx-24 massive-gap">
+        <hr class="border-green-700/50 mx-8 md:mx-24 my-16">
 
-        <section id="deep-dive" class="px-8 md:px-24 py-20 bg-gray-900/90 rounded-xl mx-8 md:mx-24 border-4 border-green-500/50">
-            <h2 class="text-5xl font-black text-green-400 mb-12 text-center tracking-tight">Technical Deep Dive: Why HyperETS is Faster 🚀</h2>
+        <section id="deep-dive" class="px-8 md:px-24 py-16 bg-gray-900/90 rounded-xl mx-8 md:mx-24 border-2 border-green-500/50">
+            <h2 class="text-4xl font-black text-green-400 mb-10 text-center tracking-tight">Technical Edge: Hardware and Network ⚙️</h2>
             
-            <div class="space-y-12">
-                <div class="p-6 bg-gray-800/70 rounded-lg">
-                    <h3 class="text-3xl font-bold text-white mb-4 border-b border-green-700 pb-2">Tier-1 Network & Hardware Overview</h3>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
-                        Our infrastructure is built on bare-metal servers utilizing **AMD EPYC Milan (7003 series)** and **Intel Xeon Scalable (Ice Lake)** processors, specifically chosen for their exceptional single-core performance—the key metric for Minecraft's core thread. We run a lightweight, custom-optimized Linux kernel (based on **Ubuntu 22.04 LTS**) to minimize OS overhead.
-                    </p>
-                    <ul class="text-gray-400 space-y-2 ml-5 list-disc">
-                        <li>**Storage:** RAID 10 NVMe SSD arrays for maximum read/write speeds, guaranteeing sub-millisecond I/O for quick chunk generation.</li>
-                        <li>**RAM:** ECC DDR4/DDR5 memory modules running at 3200MHz+ to prevent bit errors and ensure fast heap allocation for Java.</li>
-                        <li>**Network:** 10Gbps uplinks at every host machine, connected to Tier-1 Asian network providers for optimal peering and shortest possible routes to Pakistan, India, and SEA regions.</li>
-                    </ul>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                
+                <div class="p-4 bg-gray-800 rounded-lg">
+                    <h4 class="text-xl font-bold text-white mb-2">High-Frequency CPUs</h4>
+                    <p class="text-gray-400 text-sm">Servers run on latest **AMD EPYC** and **Intel Xeon** CPUs, prioritizing high single-core performance crucial for **Minecraft TPS** (Tick Per Second).</p>
                 </div>
 
-                <div class="p-6 bg-gray-800/70 rounded-lg">
-                    <h3 class="text-3xl font-bold text-white mb-4 border-b border-green-700 pb-2">Advanced Multi-Layer DDoS Protection</h3>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-4">
-                        We employ a hybrid mitigation system combining hardware-based filtering at the network edge with custom software rulesets at the application layer. This ensures that attacks are scrubbed before they even reach your server instance.
-                    </p>
-                    <table class="w-full text-left text-sm text-gray-400 mt-4 border border-gray-700">
-                        <thead class="text-xs text-white uppercase bg-gray-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">Layer</th>
-                                <th scope="col" class="px-6 py-3">Protection Mechanism</th>
-                                <th scope="col" class="px-6 py-3">Benefit</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-gray-800 border-b border-gray-700">
-                                <td class="px-6 py-4 font-medium text-white">Layer 3/4 (Network)</td>
-                                <td class="px-6 py-4">Dedicated Hardware Scrubbing Centers, BGP FlowSpec</td>
-                                <td class="px-6 py-4">Mitigates Volumetric Attacks (UDP Floods, SYN Floods) up to **1 Tbps**.</td>
-                            </tr>
-                            <tr class="bg-gray-800">
-                                <td class="px-6 py-4 font-medium text-white">Layer 7 (Application)</td>
-                                <td class="px-6 py-4">Custom Pterodactyl Firewall, Advanced Minecraft Protocol Filtering</td>
-                                <td class="px-6 py-4">Protects against specific Minecraft exploits (Login Spam, Query Floods).</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="p-4 bg-gray-800 rounded-lg">
+                    <h4 class="text-xl font-bold text-white mb-2">Optimized Routing</h4>
+                    <p class="text-gray-400 text-sm">Tier-1 network peering in Singapore and Mumbai guarantees the **lowest latency** and most stable connection paths for all Asian users.</p>
                 </div>
 
-                <div class="p-6 bg-gray-800/70 rounded-lg">
-                    <h3 class="text-3xl font-bold text-white mb-4 border-b border-green-700 pb-2">The HyperETS Control Panel (Ptero-Evolution)</h3>
-                    <p class="text-gray-300 text-lg leading-relaxed">
-                        While based on the popular Pterodactyl panel, we've developed proprietary extensions for a superior user experience, including a drag-and-drop file manager, an integrated modpack installer, and a one-click server jar optimizer that automatically applies performance flags (like Aikar's flags) to your start-up script.
-                    </p>
-                </div>
-
-                <div id="server-map" class="pt-10">
-                    <h3 class="text-3xl font-bold text-green-400 mb-4 text-center">🌍 Our Low-Latency Global Reach (Asia Focus)</h3>
-                    <div class="h-[500px] w-full bg-gray-800 rounded-lg flex items-center justify-center border-4 border-green-500/50 p-6">
-                        <div class="text-center">
-                            <p class="text-xl text-white font-mono mb-4">Map Placeholder for Visualizing Latency</p>
-                            <p class="text-3xl font-bold text-green-400">Singapore: <span class="text-white">~30ms</span> (Pakistan)</p>
-                            <p class="text-3xl font-bold text-green-400">Mumbai: <span class="text-white">~50ms</span> (South Asia)</p>
-                            <p class="text-xl text-gray-500 mt-4"><em></em></p>
-                            <img src="https://via.placeholder.com/600x400?text=HyperETS+Server+Location+Map" alt="HyperETS Server Location Map" width="600" height="400" class="block object-cover rounded-lg mx-auto mt-6"/>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        <hr class="border-green-700/50 mx-8 md:mx-24 massive-gap">
-        
-        <section id="addons" class="px-8 md:px-24 py-20 bg-gray-900/50 rounded-lg mx-8 md:mx-24">
-            <h2 class="text-5xl font-extrabold text-green-400 mb-12 text-center tracking-tight">Server Power-Ups & Add-Ons ⚙️</h2>
-            <p class="text-gray-300 text-xl text-center mb-10">Enhance your server with these premium, yet affordable, extensions.</p>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-blue-400 transition hover-lift">
-                    <h3 class="text-2xl font-bold text-blue-400 mb-3">Dedicated IP Address</h3>
-                    <p class="text-3xl font-extrabold text-white mb-4">$3.00 <span class="text-sm text-gray-400">/ Month</span></p>
-                    <p class="text-gray-300">Ditch the port numbers! Get a clean, easy-to-remember IP address (e.g., `play.hyperets.com`) for better brand identity and easier player access. **Included free with Elite Power plan.**</p>
-                </div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-yellow-400 transition hover-lift">
-                    <h3 class="text-2xl font-bold text-yellow-400 mb-3">Premium Offsite Backups</h3>
-                    <p class="text-3xl font-extrabold text-white mb-4">$5.00 <span class="text-sm text-gray-400">/ Month</span></p>
-                    <p class="text-gray-300">Upgrade from daily backups to **hourly** backups, stored for 30 days. Critical for public servers and competitive game modes where every moment matters.</p>
-                </div>
-                <div class="p-8 bg-gray-800 rounded-xl border border-gray-700 hover:border-purple-400 transition hover-lift">
-                    <h3 class="text-2xl font-bold text-purple-400 mb-3">White-Glove Migration</h3>
-                    <p class="text-3xl font-extrabold text-white mb-4">$15.00 <span class="text-sm text-gray-400">/ One-Time</span></p>
-                    <p class="text-gray-300">Let our experts move your server from your old host. We handle the files, databases, and configurations, guaranteeing a seamless, zero-downtime transfer.</p>
+                <div class="p-4 bg-gray-800 rounded-lg">
+                    <h4 class="text-xl font-bold text-white mb-2">OS Overhead Reduction</h4>
+                    <p class="text-gray-400 text-sm">We use a lightweight, custom-tuned Linux distribution to maximize resources dedicated to your Java server processes, not the OS.</p>
                 </div>
             </div>
         </section>
-        
-        <hr class="border-green-700/50 mx-8 md:mx-24 my-20">
 
-        <section class="px-8 md:px-24 py-20 bg-gradient-to-r from-green-900/30 to-gray-900/50 rounded-xl mx-8 md:mx-24">
-            <h2 class="text-5xl font-extrabold text-green-400 mb-8 text-center tracking-tight">Frequently Asked Questions (More to Read!) 🤔</h2>
+        <hr class="border-green-700/50 mx-8 md:mx-24 my-16">
+
+        <section id="testimonials" class="px-8 md:px-24 py-16">
+            <h2 class="text-4xl font-extrabold text-green-400 mb-12 text-center tracking-tight">Trusted by the Community 🗣️</h2>
             
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-6 bg-gray-800/50 rounded-lg"><h4 class="text-xl font-bold text-green-400 mb-3">How does the free trial work?</h4><p class="text-gray-300">Our 7-day free trial gives you full access to our Starter plan with no payment information required. After 7 days, you can choose to upgrade to a paid plan or your server will be automatically paused.</p></div>
-                <div class="p-6 bg-gray-800/50 rounded-lg"><h4 class="text-xl font-bold text-green-400 mb-3">Can I upgrade my plan later?</h4><p class="text-gray-300">Absolutely! You can upgrade your plan at any time with just a few clicks. The upgrade process is instant with no server downtime or data loss.</p></div>
-                <div class="p-6 bg-gray-800/50 rounded-lg"><h4 class="text-xl font-bold text-green-400 mb-3">Do you offer refunds?</h4><p class="text-gray-300">We offer a 30-day money-back guarantee on all paid plans. If you're not satisfied with our service, contact our support team for a full refund.</p></div>
-                <div class="p-6 bg-gray-800/50 rounded-lg"><h4 class="text-xl font-bold text-green-400 mb-3">What payment methods do you accept?</h4><p class="text-gray-300">We accept all major credit cards, PayPal, and various local payment methods popular in Asia including bank transfers and mobile payment solutions.</p></div>
-
-                <div class="p-6 bg-gray-800/50 rounded-lg"><h4 class="text-xl font-bold text-green-400 mb-3">How long does server deployment take?</h4><p class="text-gray-300">Server deployment is almost instant. Most servers are ready to play within 60 seconds of your order confirmation. Modpack installation may take an additional 3-5 minutes depending on the modpack size.</p></div>
-                <div class="p-6 bg-gray-800/50 rounded-lg"><h4 class="text-xl font-bold text-green-400 mb-3">Can I run BungeeCord/Velocity?</h4><p class="text-gray-300">Yes, our control panel has one-click installs for network software like BungeeCord and Velocity. The Elite Power plan is highly recommended for running a multi-server network with maximum stability.</p></div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift">
+                    <p class="text-gray-300 italic mb-4">"The ping from Pakistan is incredible! My friends and I used to play on European servers with 200ms+, but now we get 30ms. It's a game-changer!"</p>
+                    <h4 class="font-bold text-green-400">RedstoneWizard</h4>
+                    <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                </div>
+                
+                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift">
+                    <p class="text-gray-300 italic mb-4">"The setup was literally 2 minutes, and my modded server runs buttery smooth. The AI assistant helped me optimize my server settings perfectly."</p>
+                    <h4 class="font-bold text-green-400">MinecraftMaya</h4>
+                    <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                </div>
+                
+                <div class="p-6 bg-gray-800 rounded-xl border border-green-700/30 hover-lift">
+                    <p class="text-gray-300 italic mb-4">"Moved my massive public server here. The dedicated resources on the Hyper Plan eliminated all lag spikes. Highly recommended for network owners."</p>
+                    <h4 class="font-bold text-green-400">PvPMaster99</h4>
+                    <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                </div>
             </div>
         </section>
 
-        <hr class="border-green-700/50 mx-8 md:mx-24 massive-gap">
+        <hr class="border-green-700/50 mx-8 md:mx-24 my-16">
 
-        <footer id="contact" class="px-8 md:px-24 py-12 bg-gray-900 border-t border-green-700/50">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-sm">
+        <footer id="contact" class="px-8 md:px-24 py-10 bg-gray-900 border-t border-green-700/50">
+            <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-8 text-sm">
                 
                 <div class="lg:col-span-2">
-                    <h4 class="text-lg font-bold text-green-400 mb-4">HyperETS</h4>
-                    <p class="text-gray-400 mb-4">Optimized Minecraft hosting for the Asian gaming community, providing low latency and flexible payment solutions. We're passionate about making server hosting accessible to everyone, from complete beginners to experienced server administrators. We promise a smooth experience from sign-up to in-game fun!</p>
+                    <h4 class="text-lg font-bold text-green-400 mb-3">HyperETS Minecraft Hosting</h4>
+                    <p class="text-gray-400 mb-3">Optimizing the Minecraft experience for the Asian gaming community with unbeatable latency and simple, powerful server management.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-green-400 transition">Twitter</a>
                         <a href="#" class="text-gray-400 hover:text-green-400 transition">Discord</a>
-                        <a href="#" class="text-gray-400 hover:text-green-400 transition">YouTube</a>
-                        <a href="#" class="text-gray-400 hover:text-green-400 transition">GitHub</a>
-                        <a href="#" class="text-gray-400 hover:text-green-400 transition">Reddit</a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition">Twitter</a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition">Knowledge Base</a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold text-green-400 mb-4">Server Links</h4>
-                    <ul class="space-y-2">
+                    <h4 class="text-lg font-bold text-green-400 mb-3">Quick Links</h4>
+                    <ul class="space-y-1">
                         <li><a href="#plans" class="text-gray-400 hover:text-green-300 transition">Pricing & Plans</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-green-300 transition">Features</a></li>
                         <li><a href="/status" class="text-gray-400 hover:text-green-300 transition">Server Status</a></li>
-                        <li><a href="/knowledgebase" class="text-gray-400 hover:text-green-300 transition">Knowledge Base</a></li>
                         <li><a href="/tos" class="text-gray-400 hover:text-green-300 transition">Terms of Service</a></li>
-                        <li><a href="/affiliates" class="text-gray-400 hover:text-green-300 transition">Affiliate Program</a></li>
-                        <li><a href="/privacy" class="text-gray-400 hover:text-green-300 transition">Privacy Policy</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-bold text-green-400 mb-4">Support & Contact</h4>
-                    <ul class="space-y-2">
+                    <h4 class="text-lg font-bold text-green-400 mb-3">Contact Support</h4>
+                    <ul class="space-y-1">
                         <li><span class="text-gray-400">Email: support@hyperets.com</span></li>
                         <li><span class="text-gray-400">Discord: discord.gg/hyperets</span></li>
                         <li><span class="text-gray-400">24/7 Live Chat Available</span></li>
-                        <li><span class="text-gray-400">Payments: PayPal, Stripe, Local Asia Gateways</span></li>
                         <li><span class="text-gray-400">Phone: +92 300 1234567</span></li>
-                        <li><span class="text-gray-400">Admin Contact: admin@hyperets.com</span></li>
                     </ul>
                 </div>
 
-                <div>
-                    <h4 class="text-lg font-bold text-green-400 mb-4">Location & Uptime</h4>
-                    <p class="text-gray-400">Primary Data Center: <span class="text-green-400 font-semibold">Singapore (SG)</span></p>
-                    <p class="text-gray-400 mt-2">Secondary Data Center: <span class="text-green-400 font-semibold">Mumbai (IN)</span></p>
-                    <p class="text-gray-400 mt-2">Guaranteed Uptime: <span class="text-green-400 font-semibold">99.9%</span></p>
-                    <p class="text-gray-400 mt-2">Ping Optimized for Pakistan/India</p>
-                    <p class="text-gray-400 mt-2 font-bold text-green-500">Global Coverage Expansion: Coming Soon!</p>
+                <div class="hidden lg:block">
+                    <h4 class="text-lg font-bold text-green-400 mb-3">Data Centers</h4>
+                    <p class="text-gray-400">Primary: <span class="text-green-400 font-semibold">Singapore (SG)</span></p>
+                    <p class="text-gray-400 mt-1">Secondary: <span class="text-green-400 font-semibold">Mumbai (IN)</span></p>
+                    <p class="text-gray-400 mt-1">Uptime SLA: <span class="text-green-400 font-semibold">99.9%</span></p>
                 </div>
             </div>
 
-            <div class="mt-10 pt-6 border-t border-gray-700 text-center text-gray-500 text-xs">
-                &copy; 2025 HyperETS. All rights reserved. Minecraft is a trademark of Mojang Synergies AB. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft. <span class="text-green-500">Site Version: 2.1.0-ExtremelyLong</span>
+            <div class="mt-8 pt-4 border-t border-gray-700 text-center text-gray-500 text-xs">
+                &copy; 2025 HyperETS. All rights reserved. Minecraft is a trademark of Mojang Synergies AB.
             </div>
         </footer>
 
