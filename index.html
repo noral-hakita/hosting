@@ -7,13 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* IMPORTANT FIX: Force a dark background and white text regardless of Tailwind */
+        /* CRITICAL: Force a dark background and white text regardless of Tailwind */
+        html, body {
+            /* Ensures the entire document can scroll */
+            overflow-x: hidden; 
+            overflow-y: auto;
+            min-height: 100vh; /* Guarantees minimum screen height */
+        }
+        
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #1a202c !important; /* Dark Gray background */
             color: #ffffff !important; /* White text */
         }
-        
+
         /* Keyframe Animations (Retained) */
         @keyframes pulse-custom {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -54,8 +61,7 @@
         /* Particles/Pixels Background (Themed for Minecraft) */
         .bg-minecraft-pixels {
             position: relative;
-            z-index: 1; /* Ensure content is above background */
-            overflow: hidden;
+            z-index: 1; 
         }
         .bg-minecraft-pixels::before {
             content: "";
@@ -89,12 +95,12 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .hover-lift:hover {
-            transform: translateY(-3px); /* Less dramatic lift */
+            transform: translateY(-3px); 
             box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.3), 0 5px 5px -5px rgba(0, 0, 0, 0.2);
         }
 
         .glow {
-            box-shadow: 0 0 15px rgba(72, 187, 120, 0.5); /* Less intense glow */
+            box-shadow: 0 0 15px rgba(72, 187, 120, 0.5); 
         }
         .glow:hover {
             box-shadow: 0 0 25px rgba(72, 187, 120, 0.8);
@@ -103,7 +109,7 @@
 </head>
 <body class="bg-animated text-white bg-minecraft-pixels">
 
-    <div class="relative min-h-screen overflow-hidden">
+    <div class="relative"> 
 
         <header class="sticky top-0 z-50 px-8 md:px-24 py-5 border-b border-green-700/50 backdrop-blur-sm bg-gray-900/80">
             <nav class="flex justify-between items-center">
