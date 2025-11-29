@@ -4,829 +4,261 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="x-icon" href="admaa.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merchant Acquiring Form</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>ADMAA - Login</title>
     <style>
-        :root {
-            --primary: #3498db;
-            --primary-dark: #2980b9;
-            --secondary: #2c3e50;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --gray: #7f8c8d;
-            --success: #2ecc71;
-            --border: #ddd;
-            --shadow: 0 4px 15px rgba(0,0,0,0.1);
-            --bg-color: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --form-bg: white;
-            --text-color: #333;
-            --section-bg: #f9fafb;
-            --section-border: #f9fafb;
-            --input-bg: white;
-            --input-border: var(--border);
-        }
-
-        body.dark-theme {
-            --bg-color: #2c3e50;
-            --form-bg: #34495e;
-            --text-color: #ecf0f1;
-            --section-bg: #293a4a;
-            --section-border: #4a637d;
-            --input-bg: #4c6883;
-            --input-border: #5a748c;
-            --border: #5a748c;
-            --gray: #bdc3c7;
-        }
-
-        /* AUTHENTICATION STYLES */
-        .auth-container {
-            max-width: 400px;
-            margin: 50px auto;
-            background-color: var(--form-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .tab {
-            padding: 12px 20px;
-            cursor: pointer;
-            background: var(--section-bg);
-            margin-right: 5px;
-            border-radius: 5px 5px 0 0;
-            flex: 1;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .tab.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .stat-card {
-            background: var(--section-bg);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            border-left: 4px solid var(--primary);
-        }
-
-        .stat-card h3 {
-            font-size: 14px;
-            color: var(--gray);
-            margin-bottom: 8px;
-        }
-
-        .stat-card div {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .submit-section {
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: var(--section-bg);
-            border-radius: 8px;
-        }
-
-        .submit-btn-large {
-            background: var(--success);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .submit-btn-large:hover {
-            background: #27ae60;
-        }
-
-        .form-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .user-info {
-            color: var(--gray);
-            font-size: 14px;
-        }
-
-        .back-btn {
-            background: var(--gray);
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .back-btn:hover {
-            background: #5a6268;
-        }
-
-        .logout-btn {
-            background: #dc3545;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-left: 10px;
-        }
-
-        .logout-btn:hover {
-            background: #c82333;
-        }
-
-        /* EXISTING STYLES */
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            color: var(--text-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            transition: background 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: var(--form-bg);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: background-color 0.3s, box-shadow 0.3s;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
         }
 
         .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 20px;
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--light);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        h1 {
-            color: var(--secondary);
+        .header h1 {
+            font-size: 2rem;
             margin-bottom: 10px;
-            font-weight: 700;
-            font-size: 2.2rem;
-            transition: color 0.3s;
-        }
-        
-        body.dark-theme h1 {
-             color: var(--light);
         }
 
-        .subtitle {
-            color: var(--gray);
-            font-size: 1rem;
-            margin-top: 0;
-            transition: color 0.3s;
+        .header p {
+            opacity: 0.8;
         }
 
-        .section {
-            margin-bottom: 30px;
-            padding: 25px;
-            border-radius: 8px;
-            background-color: var(--section-bg);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--primary);
-            transition: background-color 0.3s;
-        }
-        
-        .employee-section {
-            background-color: #e8f4fd;
-            border-left-color: #1e88e5;
-        }
-        
-        body.dark-theme .employee-section {
-            background-color: #293a4a;
-            border-left-color: #1e88e5;
-        }
-
-        .section-title {
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--secondary);
-            font-size: 1.3em;
+        .tabs {
             display: flex;
-            align-items: center;
-            transition: color 0.3s;
-        }
-        
-        body.dark-theme .section-title {
-             color: var(--light);
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
         }
 
-        .section-title i {
-            margin-right: 10px;
-            color: var(--primary);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--secondary);
-            transition: color 0.3s;
-        }
-        
-        body.dark-theme label {
-             color: var(--gray);
-        }
-
-        input[type="text"], input[type="date"], input[type="email"], input[type="tel"], input[type="password"], select, textarea, input[type="number"] {
-            width: 100%;
-            padding: 14px 15px;
-            border: 1px solid var(--input-border);
-            border-radius: 6px;
-            font-size: 15px;
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: #6c757d;
             transition: all 0.3s;
-            background-color: var(--input-bg);
-            color: var(--text-color);
-        }
-        
-        body.dark-theme input, body.dark-theme select, body.dark-theme textarea {
-            color: var(--light);
         }
 
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        .tab.active {
+            color: #3498db;
+            border-bottom: 3px solid #3498db;
+            background: white;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        .required::after {
-            content: " *";
-            color: var(--accent);
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
         }
 
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 -10px;
-        }
-        
-        .col {
-            flex: 1;
-            padding: 0 10px;
-            min-width: 200px;
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
         }
 
-        .password-container {
-            position: relative;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--gray);
-        }
-
-        .location-picker {
-            display: flex;
-            gap: 10px;
-        }
-
-        .location-btn {
-            white-space: nowrap;
-            padding: 14px 15px;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .location-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .form-note {
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-top: 5px;
+        input:focus {
+            outline: none;
+            border-color: #3498db;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 16px;
-            background-color: var(--success);
+            padding: 15px;
+            background: #3498db;
             color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 20px;
+            transition: background 0.3s;
         }
 
         .submit-btn:hover {
-            background-color: #27ae60;
+            background: #2980b9;
         }
 
-        .submit-btn:disabled {
-            background-color: var(--gray);
-            cursor: not-allowed;
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
         }
 
         .footer {
-            margin-top: 30px;
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-            color: var(--gray);
+            padding: 20px;
+            background: #f8f9fa;
+            color: #6c757d;
             font-size: 0.9rem;
-        }
-
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        #theme-toggle {
-            background-color: var(--secondary);
-            color: var(--light);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        #theme-toggle:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .qr-item-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px dashed var(--light);
-        }
-        
-        body.dark-theme .qr-item-row {
-            border-bottom: 1px dashed #444;
-        }
-        
-        .qr-item-row:last-child {
-            border-bottom: none;
-        }
-
-        .qr-item-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 400;
-            color: var(--secondary);
-            flex-grow: 1;
-        }
-        
-        body.dark-theme .qr-item-label {
-             color: var(--gray);
-        }
-        
-        .qr-item-row input[type="checkbox"] {
-            margin-right: 10px;
-            width: auto;
-            transform: scale(1.1);
-        }
-
-        .qty-input {
-            width: 80px !important;
-            padding: 8px 10px !important;
-            margin-left: 20px;
-            text-align: center;
-        }
-
-        .progress-bar {
-            height: 6px;
-            background-color: var(--light);
-            border-radius: 3px;
-            margin-top: 20px;
-            overflow: hidden;
-            display: none;
-        }
-
-        .progress {
-            height: 100%;
-            background-color: var(--success);
-            width: 0%;
-            transition: width 0.3s;
-        }
-
-        .qr-summary {
-            margin-top: 15px;
-            padding: 10px 15px;
-            background-color: var(--light);
-            border-radius: 6px;
-            font-size: 0.9rem;
-            display: none;
-        }
-        
-        body.dark-theme .qr-summary {
-            background-color: #3a5068;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .col {
-                min-width: 100%;
-                margin-bottom: 15px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .location-picker {
-                flex-direction: column;
-            }
-            
-            .form-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            #theme-toggle {
-                margin-top: 10px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- AUTHENTICATION SECTION (Initially shown) -->
-    <div id="authSection" class="auth-container">
+    <div class="container">
         <div class="header">
             <h1>ADMAA PORTAL</h1>
-            <p class="subtitle">Login to access the merchant form</p>
+            <p>Login to access merchant services</p>
         </div>
-        
+
         <div class="tabs">
-            <div class="tab active" onclick="showTab('login')">Login</div>
-            <div class="tab" onclick="showTab('register')">Register</div>
+            <button class="tab active" onclick="showTab('login')">Login</button>
+            <button class="tab" onclick="showTab('register')">Register</button>
         </div>
 
-        <!-- Login Form -->
-        <div id="login-form">
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" id="login-email" required>
-            </div>
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" id="login-password" required>
-            </div>
-            <button class="submit-btn" onclick="login()">Login</button>
-        </div>
-
-        <!-- Register Form -->
-        <div id="register-form" class="hidden">
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" id="register-email" required>
-            </div>
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" id="register-password" required>
-            </div>
-            <button class="submit-btn" onclick="register()">Register</button>
-        </div>
-
-        <div id="authMessage" class="message"></div>
-    </div>
-
-    <!-- DASHBOARD SECTION (Initially hidden) -->
-    <div id="dashboardSection" class="container" style="display: none;">
-        <div class="form-header">
-            <div class="logo">ADMAA</div>
-            <div>
-                <button id="theme-toggle">Toggle Theme (White)</button>
-                <button class="logout-btn" onclick="logout()">Logout</button>
-            </div>
-        </div>
-        
-        <div class="header">
-            <h1>MERCHANT PORTAL DASHBOARD</h1>
-            <p class="subtitle">Welcome, <span id="user-email"></span></p>
-        </div>
-
-        <!-- User Stats -->
-        <div class="stats">
-            <div class="stat-card">
-                <h3>Total Submissions</h3>
-                <div id="total-submissions">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Approved</h3>
-                <div id="approved-submissions">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Rejected</h3>
-                <div id="rejected-submissions">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Pending</h3>
-                <div id="pending-submissions">0</div>
-            </div>
-        </div>
-
-        <!-- Submit Form Button -->
-        <div class="submit-section">
-            <h3>Ready to submit a new merchant application?</h3>
-            <button class="submit-btn-large" onclick="goToForm()">Submit Merchant Form</button>
-        </div>
-
-        <div id="dashboardMessage" class="message"></div>
-    </div>
-
-    <!-- FORM SECTION (Initially hidden) -->
-    <div id="formSection" class="container" style="display: none;">
-        <div class="form-header">
-            <button class="back-btn" onclick="goToDashboard()">← Back to Dashboard</button>
-            <div class="user-info">
-                Logged in as: <span id="current-user"></span>
-            </div>
-        </div>
-        
-        <div class="header">
-            <h1>MERCHANT ACQUIRING FORM</h1>
-            <p class="subtitle">Complete all required fields to submit your application</p>
-        </div>
-        
-        <form id="merchantForm">
-            <div class="section employee-section">
-                <div class="section-title">
-                    <i class="fas fa-user-tie"></i> EMPLOYEE INFORMATION
-                </div>
-                
+        <div class="form-container">
+            <!-- Login Form -->
+            <div id="login-form" class="form-section active">
                 <div class="form-group">
-                    <label class="required">Employee Name</label>
-                    <input type="text" id="employeeName" name="employeeName" placeholder="Enter your full name" required>
+                    <label>Email Address</label>
+                    <input type="email" id="login-email" placeholder="Enter your email">
                 </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password">
+                </div>
+                <button class="submit-btn" onclick="login()">Login</button>
             </div>
-            
-            <!-- REST OF YOUR EXISTING FORM CONTENT -->
-            <div class="section">
-                <div class="section-title">
-                    <i class="fas fa-store"></i> MERCHANT INFORMATION
-                </div>
-                
+
+            <!-- Register Form -->
+            <div id="register-form" class="form-section">
                 <div class="form-group">
-                    <label class="required">Company Name / Outlet Name</label>
-                    <input type="text" id="companyName" name="companyName" required>
+                    <label>Email Address</label>
+                    <input type="email" id="register-email" placeholder="Enter your email">
                 </div>
-                
                 <div class="form-group">
-                    <label>Brand Name / Deals In</label>
-                    <input type="text" id="brandName" name="brandName" placeholder="Enter brand name or what you deal in">
+                    <label>Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password">
                 </div>
-                
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Shop #</label>
-                            <input type="text" id="shopNumber" name="shopNumber">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Plot #</label>
-                            <input type="text" id="plotNumber" name="plotNumber">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Street</label>
-                    <input type="text" id="street" name="street">
-                </div>
-                
-                <div class="form-group">
-                    <label>Road Name</label>
-                    <input type="text" id="roadName" name="roadName">
-                </div>
-                
-                <div class="form-group">
-                    <label>Full Address / Location Coordinates</label>
-                    <div class="location-picker">
-                        <input type="text" id="fullAddress" name="fullAddress" placeholder="Enter full address or click to get location">
-                        <button type="button" class="location-btn" id="getLocationBtn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" viewBox="0 0 24 24">
-                                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-                            </svg>
-                            Get Current Location
-                        </button>
-                    </div>
-                    <input type="hidden" id="latitude" name="latitude">
-                    <input type="hidden" id="longitude" name="longitude">
-                    <div class="form-note" id="locationStatus">Click "Get Current Location" to attach coordinates for parcel delivery.</div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Near (Landmark)</label>
-                            <input type="text" id="landmark" name="landmark">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Area</label>
-                            <input type="text" id="area" name="area">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label class="required">City</label>
-                            <select id="city" name="city" required>
-                                <option value="">Select City</option>
-                                <option value="KHI">Karachi (KHI)</option>
-                                <option value="LHR">Lahore (LHR)</option>
-                                <option value="ISB">Islamabad (ISB)</option>
-                                <option value="HYD">Hyderabad (HYD)</option>
-                                <option value="MULTAN">Multan</option>
-                                <option value="FSD">Faisalabad (FSD)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Retail / Outlet Type</label>
-                            <select id="outletType" name="outletType">
-                                <option value="">Select Type</option>
-                                <option value="shop">Shop</option>
-                                <option value="mart">Mart</option>
-                                <option value="stall">Stall / Cabin</option>
-                                <option value="cart">Cart</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                <button class="submit-btn" onclick="register()">Create Account</button>
             </div>
-            
-            <!-- ... REST OF YOUR FORM SECTIONS ... -->
-            
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <span>Submit Form</span>
-            </button>
-        </form>
-        
+
+            <div id="message" class="message"></div>
+        </div>
+
         <div class="footer">
-            <p>Enabled by:<br>
-            ADMAA Retail Enablement Service (Pvt.) Ltd.<br>
-            Website: <a href="https://admaa.pk" target="_blank">admaa.pk</a> | Contact: 0300-8332737<br>
-            M1 / M2, Mezzanine Floor, Noor Square,<br>
-            Main University Road, Opp. Old Sabzi Mandi, Karachi.</p>
+            ADMAA Retail Enablement Service (Pvt.) Ltd.
         </div>
     </div>
 
     <script>
-        // n8n Webhook URLs - UPDATE THESE WITH YOUR ACTUAL URLs
-        const N8N_WEBHOOKS = {
-            AUTH: 'https://noral.gleeze.com/webhook-test/webhook/auth',
-            SUBMIT_FORM: 'https://noral.gleeze.com/webhook-test/merchant-form', // Your existing webhook
-            GET_STATS: 'https://your-n8n-instance.com/webhook/get-stats'
-        };
+        // Replace with your actual n8n webhook URL
+        const AUTH_WEBHOOK = 'https://your-n8n-domain.com/webhook/auth';
 
-        // Your existing constants and functions
-        const WEBHOOK_URL = 'https://noral.gleeze.com/webhook/merchant-form';
-        const MAX_IMAGE_SIZE_MB = 1;
-        const COMPRESSION_QUALITY = 0.7;
-
-        const qrTypeDisplayNames = {
-            'fiber': 'Fiber',
-            'acrylic': 'Acrylic Sandwich',
-            'small': 'Small Sticker',
-            'large': 'Large Sticker',
-            'badge': 'Badge',
-            'ttop': 'T-Top',
-            'yellow_fiber': 'Yellow Fiber',
-            'acrylic_table_top': 'Acrylic Table Top'
-        };
-
-        // Authentication Functions
         function showTab(tabName) {
+            // Update tabs
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.getElementById('login-form').classList.add('hidden');
-            document.getElementById('register-form').classList.add('hidden');
+            document.querySelectorAll('.form-section').forEach(section => section.classList.remove('active'));
             
             if (tabName === 'login') {
                 document.querySelectorAll('.tab')[0].classList.add('active');
-                document.getElementById('login-form').classList.remove('hidden');
+                document.getElementById('login-form').classList.add('active');
             } else {
                 document.querySelectorAll('.tab')[1].classList.add('active');
-                document.getElementById('register-form').classList.remove('hidden');
+                document.getElementById('register-form').classList.add('active');
             }
+            
+            // Clear messages
+            document.getElementById('message').className = 'message';
         }
 
         async function login() {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             
-            showAuthMessage('Logging in...', 'info');
-            
+            if (!email || !password) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            showMessage('Logging in...', 'info');
+
             try {
-                // For demo purposes - replace with actual n8n authentication
-                if (email && password) {
-                    const user = {
-                        user_id: generateUserId(),
+                const response = await fetch(AUTH_WEBHOOK, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        action: 'login',
                         email: email,
-                        name: email.split('@')[0]
-                    };
-                    
-                    localStorage.setItem('user', JSON.stringify(user));
-                    showAuthMessage('Login successful!', 'success');
+                        password: password 
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    localStorage.setItem('user', JSON.stringify(result.user));
+                    showMessage('Login successful! Redirecting...', 'success');
                     setTimeout(() => {
-                        showDashboard();
+                        window.location.href = 'dashboard.html';
                     }, 1000);
                 } else {
-                    showAuthMessage('Please enter email and password', 'error');
+                    showMessage(result.error || 'Login failed', 'error');
                 }
             } catch (error) {
-                showAuthMessage('Login failed. Please try again.', 'error');
-                console.error('Login error:', error);
+                showMessage('Network error. Please try again.', 'error');
             }
         }
 
@@ -834,402 +266,46 @@
             const email = document.getElementById('register-email').value;
             const password = document.getElementById('register-password').value;
             
-            showAuthMessage('Creating account...', 'info');
-            
+            if (!email || !password) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            showMessage('Creating account...', 'info');
+
             try {
-                if (email && password) {
-                    const user = {
-                        user_id: generateUserId(),
+                const response = await fetch(AUTH_WEBHOOK, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        action: 'register',
                         email: email,
-                        name: email.split('@')[0]
-                    };
-                    
-                    localStorage.setItem('user', JSON.stringify(user));
-                    showAuthMessage('Registration successful!', 'success');
-                    setTimeout(() => {
-                        showDashboard();
-                    }, 1000);
+                        password: password 
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('Registration successful! Please login.', 'success');
+                    showTab('login');
                 } else {
-                    showAuthMessage('Please enter email and password', 'error');
+                    showMessage(result.error || 'Registration failed', 'error');
                 }
             } catch (error) {
-                showAuthMessage('Registration failed. Please try again.', 'error');
-                console.error('Registration error:', error);
+                showMessage('Network error. Please try again.', 'error');
             }
         }
 
-        function logout() {
-            localStorage.removeItem('user');
-            showAuthSection();
-        }
-
-        function generateUserId() {
-            return 'user_' + Math.random().toString(36).substr(2, 9);
-        }
-
-        function showAuthSection() {
-            document.getElementById('authSection').style.display = 'block';
-            document.getElementById('dashboardSection').style.display = 'none';
-            document.getElementById('formSection').style.display = 'none';
-        }
-
-        function showDashboard() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (!user) {
-                showAuthSection();
-                return;
-            }
-
-            document.getElementById('user-email').textContent = user.email;
-            document.getElementById('authSection').style.display = 'none';
-            document.getElementById('dashboardSection').style.display = 'block';
-            document.getElementById('formSection').style.display = 'none';
-            
-            loadUserStats();
-        }
-
-        function showForm() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (!user) {
-                showAuthSection();
-                return;
-            }
-
-            document.getElementById('current-user').textContent = user.email;
-            document.getElementById('authSection').style.display = 'none';
-            document.getElementById('dashboardSection').style.display = 'none';
-            document.getElementById('formSection').style.display = 'block';
-        }
-
-        function goToForm() {
-            showForm();
-        }
-
-        function goToDashboard() {
-            showDashboard();
-        }
-
-        function showAuthMessage(text, type = 'info') {
-            const messageEl = document.getElementById('authMessage');
+        function showMessage(text, type) {
+            const messageEl = document.getElementById('message');
             messageEl.textContent = text;
             messageEl.className = `message ${type}`;
         }
 
-        async function loadUserStats() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (!user) return;
-
-            try {
-                // Demo stats - replace with actual n8n call
-                document.getElementById('total-submissions').textContent = '3';
-                document.getElementById('approved-submissions').textContent = '1';
-                document.getElementById('rejected-submissions').textContent = '0';
-                document.getElementById('pending-submissions').textContent = '2';
-            } catch (error) {
-                console.error('Error loading stats:', error);
-            }
-        }
-
-        // Initialize page based on authentication status
-        document.addEventListener('DOMContentLoaded', function() {
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (user) {
-                showDashboard();
-            } else {
-                showAuthSection();
-            }
-
-            // Your existing form initialization code
-            initializeForm();
-        });
-
-        // Your existing form functions (toggleQuantityInput, updateQRSummary, etc.)
-        function toggleQuantityInput(checkbox, quantityInputId) {
-            const quantityInput = document.getElementById(quantityInputId);
-            if (checkbox.checked) {
-                quantityInput.style.display = 'inline-block';
-                quantityInput.value = '1';
-                quantityInput.required = true;
-                quantityInput.focus();
-            } else {
-                quantityInput.style.display = 'none';
-                quantityInput.value = '';
-                quantityInput.required = false;
-            }
-            updateQRSummary();
-        }
-
-        function updateQRSummary() {
-            const summaryDiv = document.getElementById('qrSummary');
-            const selectedQRTypes = [];
-            
-            document.querySelectorAll('input[name="qrType"]:checked').forEach(checkbox => {
-                const qrType = checkbox.value;
-                const qtyInput = document.getElementById(`qty-${qrType}`);
-                const quantity = qtyInput ? qtyInput.value : '1';
-                
-                if (quantity && parseInt(quantity) > 0) {
-                    selectedQRTypes.push({
-                        type: qrTypeDisplayNames[qrType] || qrType,
-                        quantity: quantity
-                    });
-                }
-            });
-            
-            if (selectedQRTypes.length > 0) {
-                const summaryText = selectedQRTypes.map(item => `${item.type} ${item.quantity}`).join(', ');
-                summaryDiv.textContent = `Selected QR Types: ${summaryText}`;
-                summaryDiv.style.display = 'block';
-            } else {
-                summaryDiv.style.display = 'none';
-            }
-        }
-
-        function getFormattedQRData() {
-            const selectedQRTypes = [];
-            
-            document.querySelectorAll('input[name="qrType"]:checked').forEach(checkbox => {
-                const qrType = checkbox.value;
-                const qtyInput = document.getElementById(`qty-${qrType}`);
-                const quantity = qtyInput ? qtyInput.value : '1';
-                
-                if (quantity && parseInt(quantity) > 0) {
-                    selectedQRTypes.push({
-                        type: qrTypeDisplayNames[qrType] || qrType,
-                        quantity: quantity
-                    });
-                }
-            });
-            
-            return selectedQRTypes.map(item => `${item.type} ${item.quantity}`).join(', ');
-        }
-
-        function initializeForm() {
-            // Your existing form initialization code
-            document.getElementById('bankName').addEventListener('change', function() {
-                const otherBankContainer = document.getElementById('otherBankContainer');
-                if (this.value === 'other') {
-                    otherBankContainer.style.display = 'block';
-                    document.getElementById('otherBank').required = true;
-                } else {
-                    otherBankContainer.style.display = 'none';
-                    document.getElementById('otherBank').required = false;
-                }
-            });
-
-            document.getElementById('businessType').addEventListener('change', function() {
-                const otherBusinessContainer = document.getElementById('otherBusinessContainer');
-                if (this.value === 'other') {
-                    otherBusinessContainer.style.display = 'block';
-                    document.getElementById('otherBusiness').required = true;
-                } else {
-                    otherBusinessContainer.style.display = 'none';
-                    document.getElementById('otherBusiness').required = false;
-                }
-            });
-
-            document.getElementById('toggleCnic').addEventListener('click', function () {
-                const cnicInput = document.getElementById('cnic');
-                const type = cnicInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                cnicInput.setAttribute('type', type);
-
-                const eye = `
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="black" width="20" height="20">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.644C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.576 3.007 9.963 7.178.07.207.07.436 0 .643C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.576-3.007-9.963-7.178z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                `;
-
-                const eyeOff = `
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="black" width="20" height="20">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M9.53 9.53A3 3 0 0114.47 14.47M3.98 8.223C2.72 9.83 2 11.63 2 12c1.5 4 5.5 8 10 8 1.5 0 3.07-.39 4.52-1.06M9.88 4.121A8 8 0 0116 4c4.5 0 8.5 4 10 8-.21.56-.5 1.14-.86 1.75" />
-                    </svg>
-                `;
-
-                this.innerHTML = type === 'password' ? eyeOff : eye;
-            });
-
-            // Your existing form submission code
-            document.getElementById('merchantForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const user = JSON.parse(localStorage.getItem('user'));
-                if (!user) {
-                    alert('Please login first');
-                    showAuthSection();
-                    return;
-                }
-
-                const submitBtn = document.getElementById('submitBtn');
-                const progressBarContainer = document.getElementById('progressBarContainer');
-                const progressBar = document.getElementById('progressBar');
-                
-                submitBtn.disabled = true;
-                submitBtn.querySelector('span').textContent = 'Submitting...';
-                progressBarContainer.style.display = 'block';
-                progressBar.style.width = '10%';
-
-                try {
-                    const formData = new FormData(this);
-                    
-                    // Add user data to form submission
-                    formData.append('user_id', user.user_id);
-                    formData.append('user_email', user.email);
-                    
-                    const filesToCompress = ['shopPicture', 'cnicPictureFront', 'cnicPictureBack', 'qrCode'];
-                    const compressedFiles = {};
-
-                    let fileCount = 0;
-                    for (const fieldName of filesToCompress) {
-                        const input = document.getElementById(fieldName);
-                        if (input.files.length > 0) {
-                            const originalFile = input.files[0];
-                            progressBar.style.width = `${10 + (fileCount * 15)}%`;
-                            
-                            const compressedFile = await compressImage(originalFile, COMPRESSION_QUALITY, MAX_IMAGE_SIZE_MB);
-                            compressedFiles[fieldName] = compressedFile;
-
-                            formData.set(fieldName, compressedFile);
-                            fileCount++;
-                        } else {
-                             if(input.required) {
-                                  throw new Error(`${fieldName} is required.`);
-                             }
-                             formData.delete(fieldName);
-                        }
-                    }
-                    progressBar.style.width = '80%';
-
-                    const formattedQRData = getFormattedQRData();
-                    formData.set('qrTypeFormatted', formattedQRData);
-                    
-                    for (const key of Array.from(formData.keys())) {
-                        if (key.startsWith('qty-') && !formData.get(key)) {
-                            formData.delete(key);
-                        }
-                    }
-                    
-                    const response = await fetch(WEBHOOK_URL, {
-                        method: 'POST',
-                        body: formData,
-                    });
-                    
-                    progressBar.style.width = '100%';
-
-                    if (response.ok) {
-                        alert('Form submitted successfully!');
-                        this.reset();
-                        progressBarContainer.style.display = 'none';
-                        document.getElementById('qrSummary').style.display = 'none';
-                        
-                        // Return to dashboard after successful submission
-                        setTimeout(() => {
-                            showDashboard();
-                        }, 2000);
-                    } else {
-                        const errorData = await response.text();
-                        alert(`Submission failed. Server responded with: ${response.status} - ${errorData}`);
-                    }
-
-                } catch (error) {
-                    console.error("Submission Error:", error);
-                    alert(`An unexpected error occurred: ${error.message}`);
-                    progressBarContainer.style.display = 'none';
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.querySelector('span').textContent = 'Submit Form';
-                }
-            });
-
-            // Your existing compressImage function and other utilities
-            function compressImage(file, quality, maxSizeMB) {
-                return new Promise((resolve) => {
-                    if (!file || !file.type.startsWith('image/')) {
-                        resolve(file);
-                        return;
-                    }
-                    
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = (event) => {
-                        const img = new Image();
-                        img.src = event.target.result;
-                        img.onload = () => {
-                            const canvas = document.createElement('canvas');
-                            const ctx = canvas.getContext('2d');
-                            
-                            canvas.width = img.width;
-                            canvas.height = img.height;
-                            ctx.drawImage(img, 0, 0);
-
-                            canvas.toBlob((blob) => {
-                                if (!blob) {
-                                    resolve(file);
-                                    return;
-                                }
-                                
-                                const compressedFile = new File([blob], file.name, {
-                                    type: blob.type,
-                                    lastModified: Date.now(),
-                                });
-                                resolve(compressedFile);
-                            }, file.type, quality);
-                        };
-                        img.onerror = () => resolve(file);
-                    };
-                    reader.onerror = () => resolve(file);
-                });
-            }
-
-            // Your existing location picker code
-            document.getElementById('getLocationBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                const statusDiv = document.getElementById('locationStatus');
-                const latInput = document.getElementById('latitude');
-                const longInput = document.getElementById('longitude');
-                const addressInput = document.getElementById('fullAddress');
-                
-                statusDiv.textContent = 'Fetching location...';
-                this.disabled = true;
-
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        (position) => {
-                            const lat = position.coords.latitude;
-                            const lon = position.coords.longitude;
-                            
-                            latInput.value = lat;
-                            longInput.value = lon;
-                            addressInput.value = `Location: ${lat.toFixed(6)}, ${lon.toFixed(6)}`;
-                            statusDiv.textContent = `Location Attached: ${lat.toFixed(6)}, ${lon.toFixed(6)}`;
-                            this.disabled = false;
-                        },
-                        (error) => {
-                            statusDiv.textContent = 'Error: Location access denied or unavailable.';
-                            console.error("Geolocation Error:", error);
-                            this.disabled = false;
-                        },
-                        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
-                    );
-                } else {
-                    statusDiv.textContent = 'Error: Geolocation is not supported by this browser.';
-                    this.disabled = false;
-                }
-            });
-
-            // Your existing theme toggle code
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const body = document.body;
-
-            body.classList.add('light-theme'); 
-            themeToggleBtn.textContent = 'Toggle Theme (White)';
-
-            themeToggleBtn.addEventListener('click', () => {
-                body.classList.toggle('dark-theme');
-                const isDark = body.classList.contains('dark-theme');
-                body.classList.toggle('light-theme', !isDark);
-                themeToggleBtn.textContent = isDark ? 'Toggle Theme (Black)' : 'Toggle Theme (White)';
-            });
+        // Check if already logged in
+        if (localStorage.getItem('user')) {
+            window.location.href = 'dashboard.html';
         }
     </script>
 </body>
