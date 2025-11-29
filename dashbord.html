@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <button class="logout" onclick="logout()">Logout</button>
+        <h2>Welcome, <span id="user-email"></span></h2>
+        
+        <!-- User Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total Submissions</h3>
+                <div id="total-submissions">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Approved</h3>
+                <div id="approved-submissions">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Rejected</h3>
+                <div id="rejected-submissions">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pending</h3>
+                <div id="pending-submissions">0</div>
+            </div>
+        </div>
+
+        <!-- Submission Form -->
+        <h3>Submit New Project</h3>
+        <form id="submission-form">
+            <div class="form-group">
+                <label>Project Name:</label>
+                <input type="text" id="project-name" required>
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <textarea id="project-description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Category:</label>
+                <select id="project-category" required>
+                    <option value="">Select Category</option>
+                    <option value="design">Design</option>
+                    <option value="development">Development</option>
+                    <option value="marketing">Marketing</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Project URL:</label>
+                <input type="url" id="project-url" required>
+            </div>
+            <button type="submit">Submit Project</button>
+        </form>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check authentication
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            window.location.href = 'index.html';
+            throw new Error('Not authenticated');
+        }
+
+        document.getElementById('user-email').textContent = user.email;
+        loadUserStats();
+
+        // Form submission
+        document.getElementById('submission-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            await submitProject();
+        });
+    </script>
+</body>
+</html>
