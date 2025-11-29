@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Dashboard - Submission Portal</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,32 +29,11 @@
             </div>
         </div>
 
-        <!-- Submission Form -->
-        <h3>Submit New Project</h3>
-        <form id="submission-form">
-            <div class="form-group">
-                <label>Project Name:</label>
-                <input type="text" id="project-name" required>
-            </div>
-            <div class="form-group">
-                <label>Description:</label>
-                <textarea id="project-description" required></textarea>
-            </div>
-            <div class="form-group">
-                <label>Category:</label>
-                <select id="project-category" required>
-                    <option value="">Select Category</option>
-                    <option value="design">Design</option>
-                    <option value="development">Development</option>
-                    <option value="marketing">Marketing</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Project URL:</label>
-                <input type="url" id="project-url" required>
-            </div>
-            <button type="submit">Submit Project</button>
-        </form>
+        <!-- Submit Form Button -->
+        <div class="submit-section">
+            <h3>Ready to submit a new project?</h3>
+            <button class="submit-btn" onclick="goToForm()">Submit New Form</button>
+        </div>
 
         <div id="message" class="message"></div>
     </div>
@@ -64,18 +43,16 @@
         // Check authentication
         const user = JSON.parse(localStorage.getItem('user'));
         if (!user) {
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';
             throw new Error('Not authenticated');
         }
 
         document.getElementById('user-email').textContent = user.email;
         loadUserStats();
 
-        // Form submission
-        document.getElementById('submission-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            await submitProject();
-        });
+        function goToForm() {
+            window.location.href = 'submit-form.html';
+        }
     </script>
 </body>
 </html>
